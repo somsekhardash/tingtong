@@ -10,3 +10,5 @@ export const TongType = [
   { tax: "tax" },
   { Personal: "personal" },
 ];
+
+export const TingType = TongType;

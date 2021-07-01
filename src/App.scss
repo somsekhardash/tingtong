@@ -1,4 +1,6 @@
 .create-tong,
+.create-ting,
+.edit-ting,
 .edit-tong {
   form {
     display: flex;
@@ -9,6 +11,33 @@
   }
 }
 
+.ting-wrapper.red {
+  .clockdiv {
+    > div {
+      background: red;
+    }
+  }
+}
+
+.ting-wrapper.orange {
+  .clockdiv {
+    > div {
+      background: orange;
+    }
+  }
+}
+
+.tings {
+  display: flex;
+  .top {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 20px;
+    border: 1px solid;
+    padding: 10px;
+  }
+}
 .ting-wrapper {
   h1 {
     color: #396;
@@ -34,7 +63,7 @@
     padding: 15px;
     border-radius: 3px;
     background: #00bf96;
-    margin: 10px;
+    // margin: 10px;
     // width: 90px;
   }
 

@@ -1,8 +1,17 @@
+import { Dialog, DialogContent, DialogTitle } from "@material-ui/core";
 import moment from "moment";
-import React from "react";
+import React, { useState } from "react";
 import { useTimer } from "react-timer-hook";
+import { Createting } from "./CreateTing";
+import { Ting } from "./Ting";
 
-export function Ting({ time, tong, expiryTimestamp, markDone }) {
+export function TingNode({
+  time,
+  tong,
+  expiryTimestamp,
+  markDone,
+  createTing,
+}) {
   const {
     seconds,
     minutes,
@@ -22,6 +31,34 @@ export function Ting({ time, tong, expiryTimestamp, markDone }) {
       console.log(tong);
     },
   });
+  const [open, setOpen] = useState(false);
+  function between(x, min, max) {
+    return x >= min && x <= max;
+  }
+
+  const tClassname = function (days) {
+    switch (true) {
+      case between(days, 0, 2):
+        return "red";
+      case between(days, 3, 10):
+        return "orange";
+      default:
+        return "green";
+    }
+  };
+
+  const submitTing = (ting) => {
+    // markDone(tong);
+    createTing(
+      new Ting(
+        ting.ting_name,
+        tong.id,
+        ting.ting_amount,
+        ting.ting_tag,
+        ting.ting_description
+      )
+    );
+  };
 
   return (
     // <div style={{ textAlign: "center" }}>
@@ -47,7 +84,7 @@ export function Ting({ time, tong, expiryTimestamp, markDone }) {
     //   </button>
     //   <button onClick={() => markDone(tong)}>Done</button>
     // </div>
-    <div className="ting-wrapper">
+    <div className={`ting-wrapper ${tClassname(days)}`}>
       <div className="clockdiv">
         <div>
           <span className="days">{days}</span>
@@ -66,6 +103,32 @@ export function Ting({ time, tong, expiryTimestamp, markDone }) {
           <div className="smalltext">seconds</div>
         </div>
       </div>
+      <p>{isRunning ? "Running" : "Not running"}</p>
+      <button onClick={start}>Start</button>
+      <button onClick={pause}>Pause</button>
+      <button onClick={resume}>Resume</button>
+      {/* <button
+        onClick={() => {
+          // Restarts to 5 minutes timer
+          const time: any = new Date();
+          time.setSeconds(time.getSeconds() + 300);
+          restart(time);
+        }}
+      >
+        Restart
+      </button> */}
+      <button onClick={() => setOpen(true)}>Done</button>
+      <Dialog
+        open={open}
+        onClose={() => setOpen(!open)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">Create Ting</DialogTitle>
+        <DialogContent>
+          <Createting tong={tong} submitTing={submitTing} />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

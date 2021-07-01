@@ -39,9 +39,9 @@ export function EditTong({ tong, setTong }) {
           name="tong_type"
           onChange={handleChange}
         >
-          {TongType.map((node) => {
+          {TongType.map((node, index) => {
             return (
-              <MenuItem value={Object.keys(node)[0]}>
+              <MenuItem key={index} value={Object.keys(node)[0]}>
                 {Object.keys(node)[0]}
               </MenuItem>
             );
@@ -65,9 +65,9 @@ export function EditTong({ tong, setTong }) {
           name="tong_frequency"
           onChange={handleChange}
         >
-          {Frequency.map((node) => {
+          {Frequency.map((node, index) => {
             return (
-              <MenuItem value={Object.keys(node)[0]}>
+              <MenuItem key={index} value={Object.keys(node)[0]}>
                 {Object.keys(node)[0]}
               </MenuItem>
             );

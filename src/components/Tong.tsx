@@ -9,7 +9,7 @@ import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import DeleteForeverRoundedIcon from "@material-ui/icons/DeleteForeverRounded";
 import { EditTong } from "./EditTong";
 
-export function Tong({ tong, saveTingTon }) {
+export function Tong({ tong, saveTong }) {
   const { tong_name } = tong;
   const [open, setOpen] = useState(false);
 
@@ -28,7 +28,7 @@ export function Tong({ tong, saveTingTon }) {
         color="primary"
         aria-label="upload picture"
         component="span"
-        onClick={() => saveTingTon(tong, true)}
+        onClick={() => saveTong(tong, true)}
       >
         <DeleteForeverRoundedIcon />
       </IconButton>
@@ -40,7 +40,7 @@ export function Tong({ tong, saveTingTon }) {
       >
         <DialogTitle id="alert-dialog-title">Edit Dong</DialogTitle>
         <DialogContent>
-          <EditTong tong={tong} setTong={saveTingTon} />
+          <EditTong tong={tong} setTong={saveTong} />
         </DialogContent>
       </Dialog>
     </div>
